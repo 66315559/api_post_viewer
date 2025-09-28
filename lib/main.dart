@@ -1,4 +1,3 @@
-
 // lib/main.dart
 import 'package:flutter/material.dart';
 import 'services/api_service.dart';
@@ -43,9 +42,7 @@ class _PostListScreenState extends State<PostListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Posts from API'),
-      ),
+      appBar: AppBar(title: const Text('Posts from API')),
       body: FutureBuilder<List<Post>>(
         future: _futurePosts,
         builder: (context, snapshot) {
@@ -59,13 +56,30 @@ class _PostListScreenState extends State<PostListScreen> {
               itemBuilder: (context, index) {
                 Post post = snapshot.data![index];
                 return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 16,
+                  ),
                   elevation: 4,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(
+                          'User ID: ${post.userId}',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.cyan,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Divider(
+                          height: 10,
+                          thickness: 1,
+                          color: Colors.black12,
+                        ),
+                        const SizedBox(height: 4),
                         Text(
                           '${post.id}. ${post.title}',
                           style: const TextStyle(
@@ -94,4 +108,3 @@ class _PostListScreenState extends State<PostListScreen> {
     );
   }
 }
-
